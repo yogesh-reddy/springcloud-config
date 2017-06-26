@@ -11,7 +11,6 @@ spring:
         port: 80
 		healthCheckPath: /test
 ---
----
 # This default profile is used when running a single instance completely standalone:
 # Items that apply to ALL profiles:
 eureka:
