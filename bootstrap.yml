@@ -13,16 +13,12 @@ spring:
 ---
 ---
 # This default profile is used when running a single instance completely standalone:
-
-server:
-  port: 8010  
+# Items that apply to ALL profiles:
 eureka:
-  instance:
-    hostname: 127.0.0.1
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/    
+      defaultZone: http://localhost:8010/eureka/,http://localhost:8011/eureka/,http://localhost:8012/eureka/,http://localhost:8013/eureka/
+
+
     
   
