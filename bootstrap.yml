@@ -10,3 +10,19 @@ spring:
         hostname: ${vcap.application.uris[0]}
         port: 80
 		healthCheckPath: /test
+---
+---
+# This default profile is used when running a single instance completely standalone:
+
+server:
+  port: 8010  
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/    
+    
+  
