@@ -5,11 +5,11 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8011/eureka/
 
-# ---
-# spring:
-#   data:
-#     mongodb:
-#       uri: mongodb://localhost:37017/ibm
+---
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:37017/ibm
 
 # ---
 
