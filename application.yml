@@ -11,15 +11,15 @@ spring:
     mongodb:
       uri: mongodb://localhost:37017/ibm
 
-# ---
+---
 
-# spring:
-#   datasource:
-#     driver-class-name: com.mysql.jdbc.Driver
-#     url: jdbc:mysql://localhost:3306/ibm
-#     username: admin
-#     password: admin
-#   jpa:
-#     hibernate:
-#       ddl-auto: update  
-#     show-sql: true      
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ibm
+    username: admin
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update  
+    show-sql: true      
