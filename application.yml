@@ -9,7 +9,7 @@ eureka:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:37017/test1
+      uri: mongodb://localhost:47017/test1
 
 ---
 
@@ -23,3 +23,6 @@ spring:
     hibernate:
       ddl-auto: update  
     show-sql: true      
+
+
+
