@@ -24,5 +24,16 @@ spring:
       ddl-auto: update  
     show-sql: true      
 
+---
+spring:
+  cloud:
+    stream:
+      bindings:
+        paymentsChannel:
+         binder: rabbit
+         destination: newpayment.ms.exchange
+         content-type: application/json
+         group: qualcomm1    
+
 
 
