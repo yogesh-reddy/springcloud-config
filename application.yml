@@ -35,5 +35,13 @@ spring:
          content-type: application/json
          group: qualcomm1    
 
+------
+spring:
+  zipkin:
+    base-url: http://localhost:8085
+  sleuth:
+    sampler:
+      percentage: 1.0   
+        
 
 
