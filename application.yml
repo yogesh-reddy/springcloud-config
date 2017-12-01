@@ -24,6 +24,19 @@ spring:
       ddl-auto: update  
     show-sql: true      
 
+
+---
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@10.2.0.28:1521:orcl
+    username: Orclexi01
+    password: Orclexi01
+  jpa:
+    hibernate:
+      
+    show-sql: true   
 ---
 spring:
   cloud:
