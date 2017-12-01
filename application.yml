@@ -15,20 +15,6 @@ spring:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/microservices
-    username: admin
-    password: admin
-  jpa:
-    hibernate:
-      ddl-auto: update  
-    show-sql: true      
-
-
----
-
-spring:
-  datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@10.2.0.28:1521:orcl
     username: Orclexi01
