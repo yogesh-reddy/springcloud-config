@@ -12,15 +12,21 @@ spring:
       uri: mongodb://localhost:27017/test
 
 ---
-
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ibmms
-    username: admin
-    password: admin
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:/~testdb
   jpa:
-   show-sql: true   
+   show-sql: true 
+
+# spring:
+#   datasource:
+#     driver-class-name: com.mysql.jdbc.Driver
+#     url: jdbc:mysql://127.0.0.1:3306/ibmms
+#     username: admin
+#     password: admin
+#   jpa:
+#    show-sql: true   
 ---
 spring:
   cloud:
