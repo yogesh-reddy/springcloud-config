@@ -9,7 +9,7 @@ eureka:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:37017/test
+      uri: mongodb://localhost:47017/test
 
 ---
 ---
