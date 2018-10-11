@@ -25,7 +25,7 @@ spring:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springfullstack
+    url: jdbc:mysql://127.0.0.1:3306/microservice
     username: admin
     password: admin
   jpa:
@@ -41,7 +41,7 @@ spring:
          binder: rabbit
          destination: newpayment.ms.exchange
          content-type: application/json
-         group: ibm.bharatiya    
+         group: microservice.services  
 
 ---
 spring:
