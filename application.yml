@@ -9,7 +9,7 @@ eureka:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/springfullstack
+      uri: mongodb://localhost:27017/microservice
 
 ---
 ---
