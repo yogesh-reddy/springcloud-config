@@ -50,7 +50,7 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0   
-app.service-name: User Service - Updated for Spring Cloud Bus Testing
+app.service-name: User Service - Updated for pradeep
 
         
 
