@@ -9,7 +9,7 @@ eureka:
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/microservice
+      uri: mongodb://localhost:27017/javaspring
 
 ---
 ---
@@ -25,7 +25,7 @@ spring:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/microservice
+    url: jdbc:mysql://127.0.0.1:3306/javaspring
     username: admin
     password: admin
   jpa:
