@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: FOOD-ACCOUNTING-MICROSERVICE
+        uri: lb://FOOD-ACCOUNTING-MICROSERVICE
+        predicates:
+        - Path=/api/consumers/**
+      - id: FOOD-ORDER-MICROSERVICE
+        uri: lb://FOOD-ORDER-MICROSERVICE
+        predicates:
+        - Path=/api/orders/** 
+      - id: FOOD-KITCHEN-MICROSERVICE
+        uri: lb://FOOD-KITCHEN-MICROSERVICE
+        predicates:
+        - Path=/api/kitchens/**
