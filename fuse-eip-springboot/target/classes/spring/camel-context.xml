@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+    
+    <errorHandler id="myerrorHandler" type="DeadLetterChannel" deadLetterUri="jms:queue:deadLetter">
+    
+    </errorHandler>
+    <onException id="someException">
+    <exception>com.myapp.eip.MyException</exception>
+    
+    <onWhen>
+    <simple>${header.user}!=null</simple>
+    </onWhen>
+    
+    <redeliveryPolicy maximumRedeliveries="6"/>
+    <!-- <handled>
+    <constant>true</constant>
+    </handled> -->
+    <!-- <continued>
+     <constant>true</constant>
+    </continued> -->
+    <handled>
+     <constant>true</constant>
+     
+    </handled>
+    <transform>
+    <simple>Error Reported :${exception.message} cannot process this</simple>
+    </transform>
+    <to uri="jms:queue:error_user_queue"/>
+    
+    </onException>
+    
+       <onException id="someioException">
+    <exception>java.io.IOException</exception>
+    
+    <to uri="jms:queue:ioException"/>
+    
+    </onException>
+    
+        <route id="splitter-aggregate">
+            <from id="route-timer" uri="direct://in2"/>
+            <onException id="someioException">
+    <exception>java.io.IOException</exception>
+    
+    <to uri="jms:queue:ioException"/>
+    
+    </onException>
+            <split id="_split1" strategyRef="myAggregationStrategy">
+                <simple>body</simple>
+                <log id="_log1" message="Split Order ${body}"/>
+                <bean id="_bean1" ref="orderProcessorBean"/>
+                <to id="_to1" uri="mock:split"/>
+            </split>
+            <log id="route-log" message=">>> Aggregated ${body}"/>
+            <to id="_to2" uri="mock:finalresult"/>
+        </route>
+        <route id="filetojms">
+            <from id="_from1" uri="file:orders?noop=true"/>
+            <to id="_to3" uri="jms:queue:acceptedOrders"/>
+        </route>
+        <route id="wiretap">
+            <from id="_from2" uri="jms:queue:acceptedOrders"/>
+            <wireTap id="_wireTap1" uri="jms:queue:auditOrders"/>
+            <choice id="_choice1">
+                <when id="_when1">
+                    <simple>${header.CamelFileName} regex '^.*xml$'</simple>
+                    <to id="_to4" uri="jms:queue:xmlData"/>
+                </when>
+                <when id="_when2">
+                    <simple>${header.CamelFileName} regex '^.*(csv|csl)$'</simple>
+                    <to id="_to5" uri="jms:queue:csvData"/>
+                </when>
+            </choice>
+        </route>
+        <route id="xmldata">
+            <from id="_from3" uri="jms:queue:xmlData"/>
+            <bean id="_bean2" ref="ordersRecipientsBean"/>
+            <!-- 
+			<setHeader headerName="recipients">
+				<method ref="ordersRecipientsBean" method="recepients" />
+			</setHeader>
+
+			<recipientList>
+				<header>recipients</header>
+			</recipientList> -->
+        </route>
+        <route id="xmldataconsume">
+            <from id="_from4" uri="jms:queue:accounting"/>
+            <log id="_log2" message="Accounting Order Recieved: ${header.camelFileName}"/>
+            <to id="_to6" uri="seda:accounting"/>
+        </route>
+        
+        
+        <route id="trycatchfinally">
+        <from uri="direct:new"/>
+        <doTry>
+       <!--  <process ref="processorFail"/> -->
+        <to uri="mock:result"/>
+        <doCatch>
+        <exception>java.io.IOException</exception>
+         <handled>
+     <constant>false</constant>
+     
+    </handled>
+    <to uri="mock:io"/>
+         </doCatch>
+         <doCatch>
+        <exception>java.lang.IllegalStateException</exception>
+        <to uri="mock:catch"/>
+        </doCatch>
+        <doFinally>
+        <to uri="mock:finally"/>
+        </doFinally>
+        </doTry>
+        
+        
+        
+        </route>
+    </camelContext>
+</beans>

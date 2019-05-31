@@ -1,0 +1,16 @@
+com/myapp/eip/OrderProcessorBean.class
+com/myapp/eip/OrdersCxfRouter.class
+com/myapp/eip/MyException.class
+com/myapp/eip/JmsXMLtoJsonRoute.class
+com/myapp/eip/ParallelRoute.class
+com/myapp/eip/ParallelRoute$1.class
+com/myapp/eip/MyAggregationStrategy.class
+com/myapp/eip/OrdersServiceImpl.class
+com/myapp/eip/OrdersService.class
+com/myapp/eip/LocalDateAdapter.class
+com/myapp/eip/OrdersRecipientsBean.class
+com/myapp/eip/Orders.class
+com/myapp/Application.class
+com/myapp/eip/ParallelRoute$2.class
+com/myapp/eip/ParallelRoute$3.class
+com/myapp/eip/RouterDecisionBean.class
