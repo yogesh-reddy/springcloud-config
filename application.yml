@@ -5,8 +5,7 @@ spring:
       port: 8300
       discovery:
         instanceId: ${spring.application.name}
-        hostname: ${vcap.application.uris[0]}
-        port: 80
+        hostname: localhost
 ---
 # Items that apply to ALL profiles:
 eureka:
