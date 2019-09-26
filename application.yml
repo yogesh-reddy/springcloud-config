@@ -4,7 +4,7 @@ spring:
       host: 127.0.0.1
       port: 8300
       discovery:
-        instanceId: ${spring.application.name}:${vcap.application.application_name}:${vcap.application.instance_id}
+        instanceId: ${spring.application.name}
         hostname: ${vcap.application.uris[0]}
         port: 80
 ---
