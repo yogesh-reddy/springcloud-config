@@ -45,11 +45,7 @@ spring:
   cloud:
     stream:
       bindings:
-        paymentsChannel:
-         binder: rabbit
-         destination: newpayment.ms.exchange
-         content-type: application/json
-         group: microservice.services  
+       output: payments 
 
 ---
 spring:
