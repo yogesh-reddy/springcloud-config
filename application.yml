@@ -45,12 +45,7 @@ spring:
   cloud:
     stream:
       bindings:
-        output: payment
-        paymentsChannel:
-         binder: rabbit
-    
-         content-type: application/json
-         group: microservice.services  
+        output: payments
 
 ---
 spring:
